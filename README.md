@@ -26,5 +26,10 @@ Nesta parte esperamos que todo o CRUD de exames seja feito via ajax, então é n
 - Alterar o funcionamento do botão de editar exame para que ao clicar, renderize o form de exame (sem reload o redirecionamento de página) e possibilite a alteração do exame e salve os dados via ajax, sem reload de página
 - Alterar o funcionamento do botão novo exame para que ao clicar, renderize o form de exame (sem reload o redirecionamento de página) e possibilite a criação de um novo exame
 
-### Parte 3 - Conhecimentos de WebGL
-- Criar na página show de exame um canvas para representar graficamente os planos Po-Or e N-A do paciente no espaço 3D (utilizar three.js).
+### Parte 3 - Conhecimentos de WebGL com three.js
+**(Obrigatŕio o uso do three.js)**
+- Criar na página show de exame um canvas para representar graficamente os planos Po-Or e N-A do paciente no espaço 3D. Pode utilizar qualquer classe para desenhar(Line, PlaneGeometry, Shape, ...). O resultado esperado é o desenho dos dois planos e a interseção desses.
+- Implementar ações de movimento para visualizar os planos de outros ângulos. (dica: utilizar o THREE.TrackballControls)
+
+
+Boa sorte!

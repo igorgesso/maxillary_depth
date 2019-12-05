@@ -21,12 +21,11 @@ Separamos a atividade em três partes e cada parte vamos alinhar um conhecimento
 - Adicionar data de nascimento no paciente
 
 ### Parte 2 - Conhecimentos de front-end
-Nessa parte esperamos posibilitar que os exames sejam visualizados, criados, editados e excluídos diretamente na show de paciente. Então, todo o CRUD de exames deve ser feito via ajax, para isso, organize o seu código [desta maneira](https://blog.arkency.com/2014/07/6-front-end-techniques-for-rails-developers-part-i-from-big-ball-of-mud-to-separated-concerns/) e altere a show de pacientes seguindo esses passos:
+Nessa parte esperamos posibilitar que os exames sejam visualizados, criados, editados e excluídos diretamente na show de paciente. Então, todo o CRUD de exames deve ser feito via ajax, para isso, organize o seu código [desta maneira](https://blog.arkency.com/2014/07/6-front-end-techniques-for-rails-developers-part-i-from-big-ball-of-mud-to-separated-concerns/) e altere a show de pacientes seguindo esses passos **(Caso você conheça ou queira testar algum framework de front-end, também poderá utilizar aqui)**:
 - Carregar a listagem de exames via ajax, após o load da página
 - Alterar o funcionamento do botão de editar exame para que ao clicar, renderize o form de exame (sem reload ou redirecionamento de página) e possibilite a alteração do exame e salve os dados via ajax, sem reload de página
 - Alterar o funcionamento do botão novo exame para que ao clicar, renderize o form de exame (sem reload ou redirecionamento de página) e possibilite a criação de um novo exame
-- Alterar o funcionamento do botão Excluir para que ao clicar, remova o exame (sem reload ou redirecionamento de página) e remove o exame do banco de dados
-**(Caso você conheça ou queira testar algum framework de front-end, também poderá utilizar aqui)**
+- Alterar o funcionamento do botão Excluir para que ao clicar, remova o exame (sem reload ou redirecionamento de página) e remova também do banco de dados
 
 ### Parte 3 - Conhecimentos de WebGL com three.js
 **(Obrigatório o uso do three.js)**

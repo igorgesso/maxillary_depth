@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_10_202231) do
+ActiveRecord::Schema.define(version: 2020_03_11_045134) do
+
+  create_table "exams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "patient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "point_po_id"
+    t.integer "point_or_id"
+    t.integer "point_n_id"
+    t.integer "point_a_id"
+    t.index ["patient_id"], name: "index_exams_on_patient_id"
+  end
 
   create_table "patients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -19,4 +30,12 @@ ActiveRecord::Schema.define(version: 2020_03_10_202231) do
     t.date "birthdate"
   end
 
+  create_table "points", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.decimal "x", precision: 7, scale: 3
+    t.decimal "y", precision: 7, scale: 3
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "exams", "patients"
 end

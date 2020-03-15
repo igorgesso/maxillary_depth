@@ -1,5 +1,6 @@
 class ExamsController < ApplicationController
   before_action :set_exam, only: [:show, :edit, :update, :destroy]
+  before_action :set_patient
 
   # GET /exams
   # GET /exams.json
@@ -15,6 +16,10 @@ class ExamsController < ApplicationController
   # GET /exams/new
   def new
     @exam = Exam.new
+    @exam.point_po = Point.new
+    @exam.point_or = Point.new
+    @exam.point_n = Point.new
+    @exam.point_a = Point.new
   end
 
   # GET /exams/1/edit
@@ -25,10 +30,11 @@ class ExamsController < ApplicationController
   # POST /exams.json
   def create
     @exam = Exam.new(exam_params)
+    @exam.patient = @patient
 
     respond_to do |format|
       if @exam.save
-        format.html { redirect_to @exam, notice: 'Exam was successfully created.' }
+        format.html { redirect_to patient_path(@patient), notice: 'Exam was successfully created.' }
         format.json { render :show, status: :created, location: @exam }
       else
         format.html { render :new }
@@ -67,8 +73,14 @@ class ExamsController < ApplicationController
       @exam = Exam.find(params[:id])
     end
 
+    def set_patient
+      @patient = Patient.find(params[:patient_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def exam_params
-      params.require(:exam).permit(:patient_id)
+      params.require(:exam).permit(:patient_id, point_po_attributes: [:x,:y], point_n_attributes: [:x,:y], point_or_attributes: [:x,:y], point_a_attributes: [:x,:y])
     end
 end
+
+

@@ -22,25 +22,7 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>
-    
-    <% po = @patient.exams.each do |e| %>
-      <tr>
-        <td>X: <%= e.point_po.x %>, Y:<%= e.point_po.y %> </td>
-        <td>X: <%= e.point_or.x %>, Y:<%= e.point_or.y %> </td>
-        <td>X: <%= e.point_n.x %>, Y:<%= e.point_n.y %> </td>
-        <td>X: <%= e.point_a.x %>, Y:<%= e.point_a.y %> </td>
-        <td><%= e.maxillary_depth_angle.truncate(3) %></td>
-        <td>
-          <div class="float-right">
-            <%= link_to 'Show', patient_exam_path(@patient,e), class: "btn btn-secondary" %>
-            <%= link_to 'Edit', edit_patient_exam_path(@patient,e), class: "btn btn-secondary" %>
-            <%= link_to 'Destroy', patient_exam_path(@patient,e), class: "btn btn-sm btn-danger delete", method: :delete, data: { confirm: 'Are you sure?' } %>
-          </div>
-        </td>
-      </tr>    
-    <% end %>
-    
+  <tbody data-exams='exams' data-exams-patient-id='<%= @patient.id %>'>
   </tbody>
 </table>
 

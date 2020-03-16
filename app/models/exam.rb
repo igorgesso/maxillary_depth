@@ -13,7 +13,7 @@ class Exam < ApplicationRecord
 
   def maxillary_depth_angle
     return nil if self.point_po.x.nil? or self.point_po.y.nil? or self.point_or.x.nil? or self.point_or.y.nil? or self.point_n.x.nil? or self.point_n.y.nil? or self.point_a.x.nil? or self.point_a.y.nil?
-    calc_positivo?
+    calc_positivo?.truncate(3)
   end
 
   private

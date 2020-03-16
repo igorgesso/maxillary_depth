@@ -5,7 +5,8 @@ class ExamsController < ApplicationController
   # GET /exams
   # GET /exams.json
   def index
-    @exams = Exam.all
+    @exams = @patient.exams
+    render json: @exams.includes(:point_po, :point_or, :point_a, :point_n), include: [:point_po, :point_or, :point_n, :point_a], methods: :maxillary_depth_angle
   end
 
   # GET /exams/1

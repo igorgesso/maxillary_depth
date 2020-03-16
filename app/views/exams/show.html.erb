@@ -1,9 +1,38 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Exame</h1>
+
 <p>
-  <strong>Patient:</strong>
-  <%= @exam.patient %>
+  <strong>Name:</strong>
+  <%= @patient.name %>
 </p>
 
-<%= link_to 'Edit', edit_patient_exam_path(@exam) %> |
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>Point Po</th>
+      <th>Point Or</th>
+      <th>Point N</th>
+      <th>Point A</th>
+      <th>Angle</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>X: <%= @exam.point_po.x %>, Y:<%= @exam.point_po.y %> </td>
+        <td>X: <%= @exam.point_or.x %>, Y:<%= @exam.point_or.y %> </td>
+        <td>X: <%= @exam.point_n.x %>, Y:<%= @exam.point_n.y %> </td>
+        <td>X: <%= @exam.point_a.x %>, Y:<%= @exam.point_a.y %> </td>
+        <td><%= @exam.maxillary_depth_angle.truncate(3) %></td>
+        <td>
+          <div class="float-right">
+            <%= link_to 'Edit', edit_patient_exam_path(@patient,@exam), class: "btn btn-secondary" %>
+            <%= link_to 'Destroy', patient_exam_path(@patient,@exam), class: "btn btn-sm btn-danger delete", method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </td>
+      </tr>       
+  </tbody>
+</table>
+<%= link_to 'Back', patient_path(@patient), class: "btn btn-secondary" %>
 

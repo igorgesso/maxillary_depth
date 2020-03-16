@@ -5,13 +5,13 @@
             <legend>Po Point</legend>
               <div class="row">
                 <%= form.fields_for :point_po do |po_form| %>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <div class="form-group">
                       <%= po_form.label :x %>
                       <%= po_form.text_field :x, class: "form-control" %>
                     </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <div class="form-group">
                       <%= po_form.label :y %>
                       <%= po_form.text_field :y, class: "form-control" %>
@@ -27,13 +27,13 @@
             <legend>Or Point</legend>
               <div class="row">
                 <%= form.fields_for :point_or do |or_form| %>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <div class="form-group">
                       <%= or_form.label :x %>
                       <%= or_form.text_field :x, class: "form-control" %>
                     </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <div class="form-group">
                       <%= or_form.label :y %>
                       <%= or_form.text_field :y, class: "form-control" %>
@@ -49,13 +49,13 @@
             <legend>N Point</legend>
               <div class="row">
                 <%= form.fields_for :point_n do |n_form| %>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <div class="form-group">
                       <%= n_form.label :x %>
                       <%= n_form.text_field :x, class: "form-control" %>
                     </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <div class="form-group">
                       <%= n_form.label :y %>
                       <%= n_form.text_field :y, class: "form-control" %>
@@ -71,13 +71,13 @@
             <legend>A Point</legend>
               <div class="row">
                 <%= form.fields_for :point_a do |a_form| %>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <div class="form-group">
                       <%= a_form.label :x %>
                       <%= a_form.text_field :x, class: "form-control" %>
                     </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <div class="form-group">
                       <%= a_form.label :y %>
                       <%= a_form.text_field :y, class: "form-control" %>
@@ -88,8 +88,9 @@
             </div>
           </div>
       </div>
-      <div class="modal-footer">
-        <%= form.submit 'Save', class: "btn btn-primary" %>
+      <div class="col-md-6">
+        <%= link_to 'Back', patient_path(@patient), class: "btn btn-secondary" %>
+        <%= form.submit 'Save', class: "btn btn-primary  float-right" %>
       </div>
     </div>
     <% end %>

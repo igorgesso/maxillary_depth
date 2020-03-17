@@ -1,96 +1,96 @@
-<%= form_with model: [@patient, @exam] do |form| %>
-
-          <div class="row">
-            <div class="col-md-12">
-            <legend>Po Point</legend>
-              <div class="row">
-                <%= form.fields_for :point_po do |po_form| %>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <%= po_form.label :x %>
-                      <%= po_form.text_field :x, class: "form-control" %>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <%= po_form.label :y %>
-                      <%= po_form.text_field :y, class: "form-control" %>
-                    </div>
-                  </div>
-                <% end %>
+<div class="modal-header">
+  <h3 class="modal-title" id="myModalLabel">Exam Form</h3>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body">
+  <%= form_with model: [@patient, @exam] do |form| %>
+    <div class="row">
+      <div class="col-md-12">
+      <legend>Po Point</legend>
+        <div class="row">
+          <%= form.fields_for :point_po do |po_form| %>
+            <div class="col-md-3">
+              <div class="form-group">
+                <%= po_form.label :x %>
+                <%= po_form.text_field :x, class: "form-control" %>
               </div>
             </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-            <legend>Or Point</legend>
-              <div class="row">
-                <%= form.fields_for :point_or do |or_form| %>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <%= or_form.label :x %>
-                      <%= or_form.text_field :x, class: "form-control" %>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <%= or_form.label :y %>
-                      <%= or_form.text_field :y, class: "form-control" %>
-                    </div>
-                  </div>
-                <% end %>
+            <div class="col-md-3">
+              <div class="form-group">
+                <%= po_form.label :y %>
+                <%= po_form.text_field :y, class: "form-control" %>
               </div>
             </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-            <legend>N Point</legend>
-              <div class="row">
-                <%= form.fields_for :point_n do |n_form| %>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <%= n_form.label :x %>
-                      <%= n_form.text_field :x, class: "form-control" %>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <%= n_form.label :y %>
-                      <%= n_form.text_field :y, class: "form-control" %>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-            <legend>A Point</legend>
-              <div class="row">
-                <%= form.fields_for :point_a do |a_form| %>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <%= a_form.label :x %>
-                      <%= a_form.text_field :x, class: "form-control" %>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <%= a_form.label :y %>
-                      <%= a_form.text_field :y, class: "form-control" %>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-      </div>
-      <div class="col-md-6">
-        <%= link_to 'Back', patient_path(@patient), class: "btn btn-secondary" %>
-        <%= form.submit 'Save', class: "btn btn-primary  float-right" %>
+          <% end %>
+        </div>
       </div>
     </div>
-    <% end %>
+    <div class="row">
+      <div class="col-md-12">
+      <legend>Or Point</legend>
+        <div class="row">
+          <%= form.fields_for :point_or do |or_form| %>
+            <div class="col-md-3">
+              <div class="form-group">
+                <%= or_form.label :x %>
+                <%= or_form.text_field :x, class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <%= or_form.label :y %>
+                <%= or_form.text_field :y, class: "form-control" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+      <legend>N Point</legend>
+        <div class="row">
+          <%= form.fields_for :point_n do |n_form| %>
+            <div class="col-md-3">
+              <div class="form-group">
+                <%= n_form.label :x %>
+                <%= n_form.text_field :x, class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <%= n_form.label :y %>
+                <%= n_form.text_field :y, class: "form-control" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+      <legend>A Point</legend>
+        <div class="row">
+          <%= form.fields_for :point_a do |a_form| %>
+            <div class="col-md-3">
+              <div class="form-group">
+                <%= a_form.label :x %>
+                <%= a_form.text_field :x, class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <%= a_form.label :y %>
+                <%= a_form.text_field :y, class: "form-control" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <%= link_to 'Back', patient_path(@patient), class: "btn btn-secondary" %>
+      <%= form.submit 'Save', class: "btn btn-primary  float-right" %>
+    </div>
+  <% end %>
+</div>

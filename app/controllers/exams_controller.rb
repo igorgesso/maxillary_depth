@@ -21,10 +21,12 @@ class ExamsController < ApplicationController
     @exam.point_or = Point.new
     @exam.point_n = Point.new
     @exam.point_a = Point.new
+    render  "_form", layout: false
   end
 
   # GET /exams/1/edit
   def edit
+    render "_form", layout: false
   end
 
   # POST /exams
@@ -35,8 +37,7 @@ class ExamsController < ApplicationController
 
     respond_to do |format|
       if @exam.save
-        format.html { redirect_to patient_path(@patient), notice: 'Exam was successfully created.' }
-        format.json { render :show, status: :created, location: @exam }
+        render json: @exam, include: [:point_po, :point_or, :point_n, :point_a], methods: :maxillary_depth_angle, status: :created
       else
         format.html { render :new }
         format.json { render json: @exam.errors, status: :unprocessable_entity }
@@ -49,8 +50,7 @@ class ExamsController < ApplicationController
   def update
     respond_to do |format|
       if @exam.update(exam_params)
-        format.html { redirect_to patient_path(@patient), notice: 'Exam was successfully updated.' }
-        format.json { render :show, status: :ok, location: @exam }
+        render json: @exam, include: [:point_po, :point_or, :point_n, :point_a], methods: :maxillary_depth_angle, status: :created
       else
         format.html { render :edit }
         format.json { render json: @exam.errors, status: :unprocessable_entity }

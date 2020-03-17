@@ -6,4 +6,12 @@ Exams.Backend = class{
     getExams(){
         return fetch(`/patients/${this.patientId}/exams`).then((response) => response.json())
     }
+
+    newPath(){
+        return `/patients/${this.patientId}/exams/new`
+    }
+    
+    editPath(examId){
+        return `/patients/${this.patientId}/exams/${examId}/edit`
+    }
 }

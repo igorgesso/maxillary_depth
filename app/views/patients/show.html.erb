@@ -30,6 +30,18 @@
 <%= link_to 'Edit', edit_patient_path(@patient), class: "btn btn-secondary float-right" %>
 <%= link_to 'Back', patients_path, class: "btn btn-secondary"  %>
 
+
+<div class="modal" id="myModal" tabindex="-1" role="dialog" data-exams='modal'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" data-exams='modal-content'>
+
+    </div>
+  </div>
+</div>
+
+
+
+
 <!-- Modal -->
 <!--
 <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

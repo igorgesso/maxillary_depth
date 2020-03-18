@@ -88,9 +88,9 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <%= link_to 'Back', patient_path(@patient), class: "btn btn-secondary" %>
-      <%= form.submit 'Save', class: "btn btn-primary  float-right" %>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <%= form.submit 'Save', class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>

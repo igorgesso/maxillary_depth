@@ -50,7 +50,8 @@ class ExamsController < ApplicationController
   def update
     respond_to do |format|
       if @exam.update(exam_params)
-        render json: @exam, include: [:point_po, :point_or, :point_n, :point_a], methods: :maxillary_depth_angle, status: :created
+        # format.html { redirect_to patient_path(@patient), notice: 'Exam was successfully updated.' }
+        format.json { render json: @exam, include: [:point_po, :point_or, :point_n, :point_a], methods: :maxillary_depth_angle }
       else
         format.html { render :edit }
         format.json { render json: @exam.errors, status: :unprocessable_entity }

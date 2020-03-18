@@ -6,21 +6,51 @@ Exams.Gui = class{
 
     bindEvents(){ 
        this.$tbody.on('click', "[data-exams='edit-button']", (e) => this.clickHandlerToShowEditForm(e))
+       $("[data-exams='modal']").on("ajax:success", (e) => this.responseSuccessHandler(e))
+       $("[data-exams='modal']").on("ajax:error", (e) => this.responseErrorHandler())
+       $("[data-exams='modal']").on("ajax:complete", (e) => this.responseCompleteHandler())
     }
 
     clickHandlerToShowEditForm(event){
-        //usar o load para carregar no modal o formulario
-        var href = event.target.href
-        // console.log('click handler to edit form')
-        console.log(event)
-        
+        var href = event.target.href        
         event.preventDefault()
         $("[data-exams='modal-content']").load(href);
-
     }
 
+    responseSuccessHandler(event){
+        let detail = event.detail;
+        let exam = detail[0], status = detail[1];
+        if($(`[data-exam-id="${exam.id}"]`).length > 0){
+            let tr = $(`[data-exam-id="${exam.id}"]`)
+            tr.after(this.examRow(exam))
+            tr.remove()
+          }else{
+            this.$tbody.append(this.examRow(exam))
+          }
+        Swal.fire({
+            title: 'Exam successfully created or edited!',
+            showConfirmButton: false,
+            type: 'success',
+            timer: 2500,
+            position: 'top',
+            showConfirmButton: false}
+        )
+    }
+
+    responseCompleteHandler(){
+        $("[data-exams='modal']").modal('hide')
+    }
+
+    responseErrorHandler(){
+        Swal.fire(
+            'Error on exam create/edit!',
+            'You clicked the button!',
+            'error'
+          )
+        // alert('Error on exam create/edit')
+      }
+
     addExams(exams){
-        console.log(exams)
         this.$tbody.html('')
         for(let exam of exams){
           let row = this.examRow(exam)
@@ -29,7 +59,8 @@ Exams.Gui = class{
     }
 
     examRow(exam){
-        let html = `<tr> <td>x: ${exam.point_po.x}, y: ${exam.point_po.y} </td>`
+        let html = `<tr data-exam-id='${exam.id}'>` 
+        html += `<td>x: ${exam.point_po.x}, y: ${exam.point_po.y} </td>`
         html += `<td>x: ${exam.point_or.x}, y: ${exam.point_or.y} </td>`
         html += `<td>x: ${exam.point_n.x}, y: ${exam.point_n.y} </td>`
         html += `<td>x: ${exam.point_a.x}, y: ${exam.point_a.y} </td>`

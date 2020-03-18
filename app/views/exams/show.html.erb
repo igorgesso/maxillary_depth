@@ -18,8 +18,8 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>
-      <tr>
+  <tbody data-exams='exams' data-exams-patient-id='<%= @patient.id %>' >
+      <!--<tr>
         <td>X: <%= @exam.point_po.x %>, Y:<%= @exam.point_po.y %> </td>
         <td>X: <%= @exam.point_or.x %>, Y:<%= @exam.point_or.y %> </td>
         <td>X: <%= @exam.point_n.x %>, Y:<%= @exam.point_n.y %> </td>
@@ -27,12 +27,20 @@
         <td><%= @exam.maxillary_depth_angle.truncate(3) %></td>
         <td>
           <div class="float-right">
-            <%= link_to 'Edit', edit_patient_exam_path(@patient,@exam), class: "btn btn-secondary" %>
+            <%= link_to 'Edit', edit_patient_exam_path(@patient,@exam), class: "btn btn-secondary", "data-target": '#myModal', "data-exams": 'edit-button' %>
             <%= link_to 'Destroy', patient_exam_path(@patient,@exam), class: "btn btn-sm btn-danger delete", method: :delete, data: { confirm: 'Are you sure?' } %>
           </div>
         </td>
-      </tr>       
+      </tr>  -->    
   </tbody>
 </table>
 <%= link_to 'Back', patient_path(@patient), class: "btn btn-secondary" %>
+
+<div class="modal" id="myModal" tabindex="-1" role="dialog" data-exams='modal'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" data-exams='modal-content'>
+
+    </div>
+  </div>
+</div>
 

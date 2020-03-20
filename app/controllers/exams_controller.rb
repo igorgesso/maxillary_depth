@@ -6,7 +6,7 @@ class ExamsController < ApplicationController
   # GET /exams.json
   def index
     @exams = @patient.exams
-    render json: @exams.includes(:point_po, :point_or, :point_a, :point_n), include: [:point_po, :point_or, :point_n, :point_a], methods: :maxillary_depth_angle
+    render json: @exams.includes(:point_po, :point_or, :point_n, :point_a), include: [:point_po, :point_or, :point_n, :point_a], methods: :maxillary_depth_angle
   end
 
   # GET /exams/1
@@ -37,7 +37,7 @@ class ExamsController < ApplicationController
 
     respond_to do |format|
       if @exam.save
-        render json: @exam, include: [:point_po, :point_or, :point_n, :point_a], methods: :maxillary_depth_angle, status: :created
+        format.json {render json: @exam, include: [:point_po, :point_or, :point_n, :point_a], methods: :maxillary_depth_angle, status: :created }
       else
         format.html { render :new }
         format.json { render json: @exam.errors, status: :unprocessable_entity }
@@ -81,7 +81,7 @@ class ExamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exam_params
-      params.require(:exam).permit(:patient_id, point_po_attributes: [:x,:y], point_n_attributes: [:x,:y], point_or_attributes: [:x,:y], point_a_attributes: [:x,:y])
+      params.require(:exam).permit(:patient_id, point_po_attributes: [:x,:y], point_or_attributes: [:x,:y], point_n_attributes: [:x,:y], point_a_attributes: [:x,:y])
     end
 end
 

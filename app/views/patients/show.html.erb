@@ -22,11 +22,11 @@
       <th></th>
     </tr>
   </thead>
-  <tbody data-exams='exams' data-exams-patient-id='<%= @patient.id %>'>
+  <tbody data-exams='exams-index' data-exams-patient-id='<%= @patient.id %>'>
   </tbody>
 </table>
 
-<%= link_to 'Add Exam', new_patient_exam_path(@patient) , class: "btn btn-primary float-right"  %>  <!-- "data-toggle": "modal", "data-target": "#myModal"-->
+<%= link_to 'Add Exam', new_patient_exam_path(@patient) , class: "btn btn-primary float-right", "data-toggle": 'modal' ,"data-target": '#myModal' , "data-exams": 'add-exam-button' %>  <!-- "data-toggle": "modal", "data-target": "#myModal"-->
 <%= link_to 'Edit', edit_patient_path(@patient), class: "btn btn-secondary float-right" %>
 <%= link_to 'Back', patients_path, class: "btn btn-secondary"  %>
 

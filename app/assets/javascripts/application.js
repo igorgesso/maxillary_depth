@@ -17,4 +17,5 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require exams/setup.js
+//= require three.min
 //= require_tree .

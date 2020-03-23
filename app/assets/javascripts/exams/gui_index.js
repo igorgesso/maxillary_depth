@@ -11,7 +11,8 @@ Exams.IndexGui = class{
        $("[data-exams='modal']").on("ajax:error", (e) => this.responseErrorHandler())
        $("[data-exams='modal']").on("ajax:complete", (e) => this.responseCompleteHandler())
        //$("[data-confirm]").on("click", (e) => this.deleteExam())
-       this.$tbody.on("click", "[data-method='delete']", (e) => this.deleteExam(e))
+       //this.$tbody.on("click", "[data-method='delete']", (e) => this.deleteExam(e))
+       this.$tbody.on('ajax:success',"[data-exam='delete']", this.deleteExam )
     }
 
     btnClickHandlerToShowCreateForm(event){
@@ -60,9 +61,9 @@ Exams.IndexGui = class{
       }
 
     deleteExam(event){
-        $('.delete').bind('ajax:success', function() {
-            $(this).closest('tr').fadeOut();
-        });
+        console.log(event)
+        console.log(this)
+        $(event.target).closest('tr').fadeOut();
     }
 
     addExams(exams){
@@ -84,7 +85,7 @@ Exams.IndexGui = class{
             <div class="float-right">
                 <a class="btn btn-sm btn-secondary" href="/patients/${exam.patient_id}/exams/${exam.id}" data-exams='show-button' data-exams-id=${exam.id}>Show</a>
                 <a class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#myModal" data-exams='edit-button' href="/patients/${exam.patient_id}/exams/${exam.id}/edit">Edit</a>
-                <a class="btn btn-sm btn-danger delete" data-confirm="Are you sure?" data-remote=true rel="nofollow" data-method="delete" href="/patients/${exam.patient_id}/exams/${exam.id}.json">Destroy</a>
+                <a class="btn btn-sm btn-danger delete" data-exam='delete' data-confirm="Are you sure?" data-remote='true' rel="nofollow" data-method="delete" href="/patients/${exam.patient_id}/exams/${exam.id}.json">Destroy</a>
             </div>
       </td>`
       return html += `</tr>`

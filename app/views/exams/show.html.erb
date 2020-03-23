@@ -21,6 +21,13 @@
   <tbody data-exams='exams-show' data-exams-patient-id='<%= @patient.id %>' data-exams-id='<%= @exam.id %>' >   
   </tbody>
 </table>
+
+<div class="row">
+  <div class="col-md-12" data-view3d='wrapper'>
+   <canvas id="myCanvas" data-canvas="canvas" style="border:1px solid #eb0505;"></canvas>
+  </div>
+</div>
+
 <%= link_to 'Back', patient_path(@patient), class: "btn btn-secondary" %>
 
 <div class="modal" id="myModal" tabindex="-1" role="dialog" data-exams='modal'>
@@ -30,4 +37,6 @@
     </div>
   </div>
 </div>
+
+<%= javascript_include_tag 'exams/exam_canvas', "data-turbolinks-track" => true %>
 

@@ -66,6 +66,7 @@ Exams.ShowGui = class{
         this.$tbody.html('')
         let row = this.examRow(exams)
         this.$tbody.append(row)
+        return exams;
     }
 
     examRow(exam){

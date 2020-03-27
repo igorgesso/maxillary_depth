@@ -14,8 +14,11 @@ Exams.App = class{
         }else if(this.$examsShow.length > 0 ){
             let examId = $("[data-exams-id]").data().examsId
             this.gui = new Exams.ShowGui();
-            this.canvas = new Exams.ExamCanvas();
-            this.backend.getExam(examId).then(this.gui.addExam.bind(this.gui));
+            this.backend.getExam(examId)
+                .then(this.gui.addExam.bind(this.gui))
+                .then(function (exams) {
+                    new Exams.ExamCanvas(exams);
+                });
             
         // console.log(this.$examsShow)
         // console.log("Divido")

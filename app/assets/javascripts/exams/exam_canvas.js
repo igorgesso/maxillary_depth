@@ -1,90 +1,88 @@
 Exams.ExamCanvas = class {
-  constructor(){
-    this.$canvas = $("[data-canvas='canvas']");
+  constructor(exams){
+    this.exams = exams;
+    this.$canvas = $("[data-exam-canvas]");
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera();
-    this.renderer = new THREE.WebGLRenderer();
+    this.renderer = new THREE.WebGLRenderer({ antialias: true});
+    this.group    = new THREE.Group();
     this.bindEvents();
   } 
   
   bindEvents(){
-    this.camera.fieldOfView = 45;
-    this.camera.aspectRatio = window.innerWidth/window.innerHeight;
-    this.camera.near = 1;
-    this.camera.far = 10000;
-    this.camera.position.set( 0, 0, 2000 );
-    this.camera.lookAt( 0, 0, 0 );
-    this.renderer = {canvas: this.$canvas, antialias: true};
-    // this.renderer.setSize( 500, 500 );
-    //this.renderCanvas();
+    this.configCamera();
+    this.scene.background = new THREE.Color(0xededed);
+    //this.renderer.setPixelRatio(window.devicePixelRatio)
+    this.renderer.setSize(window.innerWidth, window.innerHeight, false);
+    console.log(this.renderer);
+    // this.renderer.setSize( 700,500 );
+    this.createLines(this.exams);
+    this.createPoint(this.exams.point_a);
+    this.createPoint(this.exams.point_n);
+    this.createPoint(this.exams.point_po);
+    this.createPoint(this.exams.point_or);
+    this.createScene();
+    this.$canvas.append(this.renderer.domElement);
+    this.initOrbitControls();
+    this.animate();
   }
 
+  configCamera() {
+    this.camera.fieldOfView = 45;
+    this.camera.aspectRatio = window.innerWidth / window.innerHeight;
+    this.camera.near = 0.1;
+    this.camera.far = 10000;
+    this.camera.position.set( 360, 450, 700 );
+    //this.camera.lookAt( 0, 0, 0 );
+  }
 
-
-//  fieldOfView = 45,
-//       aspectRatio = window.innerWidth/window.innerHeight,
-//       near = 1,
-//       far = 10000;
-
-  //camera = new THREE.PerspectiveCamera( fieldOfView, aspectRatio, near, far );
-  //camera.position.set( 0, 0, 2000 );
-  //camera.lookAt( 0, 0, 0 );
+  createScene() {
+    this.scene.add( this.group );
+  };
 
   // const light = new THREE.DirectionalLight( 0xffffff );
   // light.position.set( 1, 0, 1 ).normalize();
   // scene.add(light);
 
-  // let cubeWidth = 150,
-  //     cubeHeight = 150,
-  //     cubeDepth = 150;
+  createLines(exam) {
+    const material = new THREE.LineBasicMaterial({color: 'blue'});
 
-  // const cubeGeometry = new THREE.BoxGeometry( cubeWidth, cubeHeight, cubeDepth );
-  // const cubeMaterial = new THREE.MeshBasicMaterial( {color: 'red'} );
+    const points_n_a = new THREE.Geometry();
+    points_n_a.vertices.push(new THREE.Vector3( exam.point_n.x, exam.point_n.y, 0) );
+    points_n_a.vertices.push(new THREE.Vector3( exam.point_a.x, exam.point_a.y, 0) );
+    const line_n_a = new THREE.Line(points_n_a, material);
+    this.group.add(line_n_a);
 
-  // const cube = new THREE.Mesh( cubeGeometry, cubeMaterial );
+    const points_po_or = new THREE.Geometry();
+    points_po_or.vertices.push(new THREE.Vector3( parseFloat(exam.point_po.x)- 50, exam.point_po.y, 0) );
+    points_po_or.vertices.push(new THREE.Vector3( parseFloat(exam.point_or.x) + 100, exam.point_or.y, 0) );
+    const line_po_or = new THREE.Line(points_po_or, material);
+    this.group.add(line_po_or);
+  }
 
-  // scene.add(cube);
-  // var material1 = new THREE.LineBasicMaterial( { color: 'red' } );
+  createPoint(point) {
+    const starsMaterial = new THREE.PointsMaterial( { color: 'red', size: 20 } );
+    const starsGeometry = new THREE.Geometry();
+    starsGeometry.vertices.push( new THREE.Vector3(point.x, point.y, 0));
+    const starField = new THREE.Points( starsGeometry, starsMaterial );
+    this.group.add(starField);
+  }
 
-  // var geometry1 = new THREE.Geometry();
-  // geometry1.vertices.push(new THREE.Vector3( 632.698, 292.369, 0) );
-  // geometry1.vertices.push(new THREE.Vector3( 626.272, 563.035, 0) );
+  initOrbitControls() {
+    this.controls = new THREE.OrbitControls( this.camera, this.renderer.domElement );
+    this.controls.target.set( 360, 450, 0 );
+    this.controls.update();
+  }
 
-  // var line1 = new THREE.Line( geometry1, material1 );
+  animate() {
+  	requestAnimationFrame( this.animate.bind(this) );
+    this.controls.update();
+    console.log(this.controls);
+    this.renderCanvas();
+  }
 
-  // var material2 = new THREE.LineBasicMaterial( { color: 'blue' } );
-
-  // var geometry2 = new THREE.Geometry();
-  // geometry2.vertices.push(new THREE.Vector3( 163.245, 417.157, 0) );
-  // geometry2.vertices.push(new THREE.Vector3( 567.222+100, 415.854, 0) );
-
-  // var line2 = new THREE.Line( geometry2, material2 );
-
-  // scene.add( line1, line2 );
-
-  // var starsGeometry = new THREE.Geometry();
-
-
-  // var star = new THREE.Vector3(163.245, 417.157, 0);
-
-  // starsGeometry.vertices.push( star );
-
-  // var starsMaterial = new THREE.PointsMaterial( { color: 'yellow', size: 10 } );
-
-  // var starField = new THREE.Points( starsGeometry, starsMaterial );
-
-  // scene.add( starField );
-
- //myCanvas = document.getElementById('myCanvas');
-
-  
-  // renderer.setSize( 500, 500 );
-
-
-
-  // renderCanvas() {
-
-  //   this.renderer.render( this.scene, this.camera );
-  // };
+  renderCanvas() {
+    this.renderer.render( this.scene, this.camera );
+  };
 
 }
